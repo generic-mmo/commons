@@ -11,7 +11,7 @@ export default function serve(microservice: unknown): Promise<Server> {
         const instance = new implementation() as Record<string, (payload: unknown) => Promise<unknown>>
 
         const operations: Parameters<typeof server.addService>[1] = { }
-        for (const propertyKey of Object.keys(instance.prototype)) {
+        for (const propertyKey of Object.keys(Object.getPrototypeOf(instance))) {
             operations[propertyKey] = createServerUnaryOperation(instance, propertyKey)
         }
 

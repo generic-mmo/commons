@@ -44,9 +44,10 @@ export default function Microservice(configuration: MicroserviceConfiguration): 
             constructor() {
                 const instance = new implementation() as Record<string, (payload: unknown) => Promise<unknown>>
                 const client = new configuration.client(configuration.location(), ChannelCredentials.createInsecure())
-                for (const propertyKey of Object.keys(instance.prototype)) {
+                for (const propertyKey of Object.keys(Object.getPrototypeOf(instance))) {
+                    const method = Reflect.get(client, propertyKey)
                     Object.defineProperty(client, propertyKey, {
-                        value: createClientUnaryOperation(client, propertyKey)
+                        value: createClientUnaryOperation(client, method)
                     })
                 }
 

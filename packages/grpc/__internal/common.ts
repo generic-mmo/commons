@@ -10,11 +10,10 @@ export const createServerUnaryOperation = (instance: Record<string, (payload: un
     }
 }
 
-export const createClientUnaryOperation = (client: Client, propertyKey: string) => {
+export const createClientUnaryOperation = (client: Client, method: (...varargs: unknown[]) => void) => {
     return (request: unknown): Promise<unknown> => {
         return new Promise((resolve, reject) => {
-            // @ts-ignore
-            client[propertyKey].call(client, request, (error: ServiceError | null, response: unknown) => {
+            method.call(client, request, (error: ServiceError | null, response: unknown) => {
                 if (error) {
                     reject(error)
                 } else {
