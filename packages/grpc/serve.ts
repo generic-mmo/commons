@@ -3,11 +3,11 @@ import { MicroserviceConstructor } from "./main";
 
 
 
-export default function serve(microservice: MicroserviceConstructor) {
+export default function serve(microservice: unknown) {
+    const { implementation, configuration } = microservice as MicroserviceConstructor
     const server = new Server()
-    const implementation = new microservice.implementation()
-    server.addService(microservice.configuration.service, implementation as any)
-    server.bindAsync(microservice.configuration.location(), ServerCredentials.createInsecure(), () => {
+    server.addService(configuration.service, new implementation() as Parameters<typeof server.addService>[1])
+    server.bindAsync(configuration.location(), ServerCredentials.createInsecure(), () => {
         server.start()
     })
 }

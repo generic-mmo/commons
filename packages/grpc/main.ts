@@ -30,11 +30,7 @@ export default function Microservice(configuration: MicroserviceConfiguration): 
             public static configuration = configuration
 
             constructor() {
-                return new Client(
-                    configuration.location(),
-                    require("/home/mzpkjs/Hobby Projects/generic-mmo/server/node_modules/@grpc/grpc-js")
-                        .ChannelCredentials.createInsecure()
-                )
+                return new configuration.client(configuration.location(), ChannelCredentials.createInsecure())
             }
         }
     }
