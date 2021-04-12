@@ -1,0 +1,32 @@
+{
+  "name": "@generic-mmo/grpc",
+  "version": "0.0.0",
+  "type": "commonjs",
+  "main": "./main.js",
+  "types": "./main.d.ts",
+  "scripts": {
+    "start": "node ./main.js",
+    "build": "buildtools-build",
+    "clean": "buildtools-clean"
+  },
+  "peerDependencies": {
+    "@grpc/grpc-js": "1.x"
+  },
+  "devDependencies": {
+    "@grpc/grpc-js": "1.x"
+  },
+  "files": [
+    "package.json",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "**/*.js",
+    "**/*.d.ts",
+    "**/*.d.ts.map",
+    "!node_modules"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/generic-mmo/toolbox"
+}

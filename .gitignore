@@ -1,0 +1,36 @@
+# Application
+## Dependencies
+node_modules/
+
+
+# Artifacts
+## Build
+**/*.js
+**/*.d.ts
+**/*.d.ts.map
+**/schema/**/*.ts
+## Caching
+.cache/
+*.tsbuildinfo
+## Logs
+*-debug*
+## Reports
+coverage/
+
+
+
+# IDE specific files
+## Visual Studio Code
+.vscode/
+## WebStorm
+.idea/
+
+
+
+# OS specific files
+## Windows
+Thumbs.db
+## Linux
+*~
+## macOS
+.DS_Store
