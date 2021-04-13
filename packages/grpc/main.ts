@@ -22,13 +22,27 @@ export interface MicroserviceConstructor {
 }
 
 
-const x = new WeakMap()
-
-
-export function Unary(): MethodDecorator {
+export function UnaryCall(): MethodDecorator {
     return (target, propertyKey, descriptor) => {
         descriptor.enumerable = true
-        x.set(target, new WeakSet())
+    }
+}
+
+export function BidirectionalStream(): MethodDecorator {
+    return (target, propertyKey, descriptor) => {
+        descriptor.enumerable = true
+    }
+}
+
+export function ClientStream(): MethodDecorator {
+    return (target, propertyKey, descriptor) => {
+        descriptor.enumerable = true
+    }
+}
+
+export function ServerStream(): MethodDecorator {
+    return (target, propertyKey, descriptor) => {
+        descriptor.enumerable = true
     }
 }
 
